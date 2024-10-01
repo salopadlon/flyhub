@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+httpx
+redis
+fastapi-cache2
+pytest
+python-dotenv
+black
+isort
+flake8

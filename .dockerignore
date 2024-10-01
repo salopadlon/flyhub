@@ -1,0 +1,45 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Git
+.git/
+.gitignore
+
+# IDEs/Editors
+.vscode/
+.idea/
+
+# Pytest cache
+.pytest_cache/
+.tox/
+.cache
+.coverage
+coverage.xml
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Docker Compose override file
+docker-compose.override.yml
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Local development files
+*.sqlite3
+*.swp
