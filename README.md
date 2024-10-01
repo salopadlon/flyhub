@@ -124,7 +124,7 @@ through `load_dotenv` method, which automatically loads these values.
 
 The application provides the following endpoints:
 
-`GET /search-flights`
+`GET /api/v1/search-flights`
 
 Search for flights between two countries on a specific date, returning the cheapest flights.
 
