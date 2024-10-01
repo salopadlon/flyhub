@@ -39,6 +39,11 @@ cd flyhub
 
 Create a `.env` file in the root directory.
 
+#### Redis Configuration
+
+- **Running Locally**: If you're running Redis locally (outside of Docker), use `redis://localhost:6379` as the `REDIS_URL` in your `.env` file.
+- **Running in Docker**: When running the application using Docker Compose, use `redis://redis:6379` as the `REDIS_URL`. This refers to the Redis service name in the Docker Compose network.
+
 3. **(Only for local development) Install dependencies:**
 
 If you're running the app locally (outside of Docker), you need to install the required Python packages 
