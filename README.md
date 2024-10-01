@@ -31,8 +31,8 @@ Make sure you have the following installed:
 1. **Clone the repository:**
 
 ```bash 
-git clone https://github.com/yourusername/your-repo-name.git 
-cd your-repo-name 
+git clone https://github.com/salopadlon/flyhub.git 
+cd flyhub
 ```
 
 2. **Set up environment variables:**
