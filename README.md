@@ -37,7 +37,7 @@ cd flyhub
 
 2. **Set up environment variables:**
 
-Create a `.env` file in the root directory.
+Create a `.env` file in the root directory (provided through other communication channel).
 
 #### Redis Configuration
 
