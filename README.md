@@ -120,6 +120,11 @@ set up using Docker Compose, and the caching behavior is controlled via the `fas
 All configurations are managed via environment variables defined in the `.env` file. The configuration is handled 
 through `load_dotenv` method, which automatically loads these values.
 
+#### Redis Configuration
+
+- **Running Locally**: If you're running Redis locally (outside of Docker), use `redis://localhost:6379` as the `REDIS_URL` in your `.env` file.
+- **Running in Docker**: When running the application using Docker Compose, use `redis://redis:6379` as the `REDIS_URL`. This refers to the Redis service name in the Docker Compose network.
+
 ### API Endpoints
 
 The application provides the following endpoints:
