@@ -2,7 +2,7 @@ import pytest
 
 from app.exceptions import FlightSortingException
 from app.models.flight_model import FlightResponseModel
-from app.utils.utils import sort_flights_by_price
+from app.utils.utils import is_date_valid, sort_flights_by_price
 
 
 def test_sort_flights_by_price_success():
@@ -43,3 +43,43 @@ def test_sort_flights_by_price_invalid_data():
     # THEN
     with pytest.raises(FlightSortingException):
         sort_flights_by_price(flights)
+
+
+def test_is_date_valid_with_valid_date():
+    # GIVEN
+    valid_date = "15/10/2023"
+
+    # THEN
+    assert is_date_valid(valid_date) == True
+
+
+def test_is_date_valid_with_invalid_date_format():
+    # GIVEN
+    invalid_date = "10/15/2023"
+
+    # THEN
+    assert is_date_valid(invalid_date) == False
+
+
+def test_is_date_valid_with_invalid_day():
+    # GIVEN
+    invalid_day = "31/02/2023"
+
+    # THEN
+    assert is_date_valid(invalid_day) == False
+
+
+def test_is_date_valid_with_empty_string():
+    # GIVEN
+    empty_date = ""
+
+    # THEN
+    assert is_date_valid(empty_date) == False
+
+
+def test_is_date_valid_with_invalid_characters():
+    # GIVEN
+    invalid_date = "abc/def/ghij"
+
+    # THEN
+    assert is_date_valid(invalid_date) == False

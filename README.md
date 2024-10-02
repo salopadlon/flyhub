@@ -85,6 +85,42 @@ uvicorn app.main:app --reload
 Visit the API documentation at http://localhost:8000/docs to test the endpoints.
 
 
+### API Endpoints
+
+The application provides the following endpoints:
+
+`GET /api/v1/search-flights`
+
+Search for flights between two countries on a specific date, returning the cheapest flights.
+
+#### Query Parameters:
+
+- `source_country`: The source country ISO code (e.g., `US`).
+- `destination_country`: The destination country ISO code (e.g., `IN`).
+- `departure_date`: The departure date in `DD/MM/YYYY` format.
+
+#### Response:
+
+The response will contain the cheapest flights between the top 3 airports in the source and destination countries.
+
+Example response:
+
+```json
+[
+    {
+        "src": "JFK",
+        "dst": "CDG",
+        "price": "300"
+    },
+    {
+        "src": "LAX",
+        "dst": "ORY",
+        "price": "450"
+    }
+]
+```
+
+
 ### Testing
 
 To run unit tests, use the following command:
@@ -130,37 +166,3 @@ through `load_dotenv` method, which automatically loads these values.
 - **Running Locally**: If you're running Redis locally (outside of Docker), use `redis://localhost:6379` as the `REDIS_URL` in your `.env` file.
 - **Running in Docker**: When running the application using Docker Compose, use `redis://redis:6379` as the `REDIS_URL`. This refers to the Redis service name in the Docker Compose network.
 
-### API Endpoints
-
-The application provides the following endpoints:
-
-`GET /api/v1/search-flights`
-
-Search for flights between two countries on a specific date, returning the cheapest flights.
-
-#### Query Parameters:
-
-- `source_country`: The source country ISO code (e.g., `US`).
-- `destination_country`: The destination country ISO code (e.g., `IN`).
-- `departure_date`: The departure date in `DD-MM-YYYY` format.
-
-#### Response:
-
-The response will contain the cheapest flights between the top 3 airports in the source and destination countries.
-
-Example response:
-
-```json
-[
-    {
-        "src": "JFK",
-        "dst": "CDG",
-        "price": "300"
-    },
-    {
-        "src": "LAX",
-        "dst": "ORY",
-        "price": "450"
-    }
-]
-```

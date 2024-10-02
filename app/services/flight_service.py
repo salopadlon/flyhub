@@ -63,7 +63,7 @@ async def fetch_cheapest_flight(
     Args:
         source_country (str): Source country ISO code.
         destination_country (str): Destination country ISO code.
-        departure_date (str): Date of departure in DD-MM-YYYY format.
+        departure_date (str): Date of departure in DD/MM/YYYY format.
 
     Returns:
         FlightResponseModel: List of flight data.

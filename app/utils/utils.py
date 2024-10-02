@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 from typing import List, Optional, Union
 
 import httpx
@@ -77,3 +78,21 @@ async def make_api_request(url: str, headers: dict, params: dict) -> Optional[di
             logger.error(f"An unexpected error occurred: {exc}")
 
     return None
+
+
+def is_date_valid(departure_date: str) -> bool:
+    """
+    Validates that the departure date follows the DD/MM/YYYY format.
+
+    Args:
+        departure_date (str): The departure date string.
+
+    Returns:
+        bool: True if the date is valid, False otherwise.
+    """
+
+    try:
+        datetime.strptime(departure_date, "%d/%m/%Y")
+        return True
+    except ValueError:
+        return False

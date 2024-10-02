@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException, Query
 from app.exceptions import FlightServiceException, FlightSortingException
 from app.models.flight_model import FlightResponseModel
 from app.services.flight_service import fetch_top_3_airports, get_cheapest_flights
-from app.utils.utils import sort_flights_by_price
+from app.utils.utils import is_date_valid, sort_flights_by_price
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ async def search_flights(
     source_country: str = Query(..., description="Source country code"),
     destination_country: str = Query(..., description="Destination country code"),
     departure_date: str = Query(
-        ..., description="Date of departure in DD-MM-YYYY format"
+        ..., description="Date of departure in DD/MM/YYYY format"
     ),
 ) -> List[FlightResponseModel]:
     """
@@ -28,11 +28,25 @@ async def search_flights(
     Args:
         source_country (str): Source country ISO code.
         destination_country (str): Destination country ISO code.
-        departure_date (str): Date of departure in DD-MM-YYYY format.
+        departure_date (str): Date of departure in DD/MM/YYYY format.
 
     Returns:
         List[FlightResponseModel]: List of flight data.
     """
+
+    if not source_country or not destination_country:
+        logger.error("Source or destination country code is empty.")
+        raise HTTPException(
+            status_code=400,
+            detail="Source and destination country codes cannot be empty.",
+        )
+
+    if not is_date_valid(departure_date):
+        logger.error("Invalid departure date format.")
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid departure date format. Please use DD/MM/YYYY format.",
+        )
 
     try:
         source_airports = await fetch_top_3_airports(source_country)
